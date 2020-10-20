@@ -4,25 +4,14 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "clientes")
 public class Cliente implements Serializable {
 
 	@Id
-	private String per_identificacion;
+	private String identificacion;
 
 	@Column(name = "per_nombre", length = 128, nullable = false)
 	private String per_nombre;
@@ -46,15 +35,18 @@ public class Cliente implements Serializable {
 	private LocalDate fecha_registro;
 
 	// Relacion muchos a uno
-	@ManyToOne
-	@JoinColumn(name = "banco_identificacion", referencedColumnName = "banco_identificacion", nullable = false)
+	@OneToOne
+	@JoinColumn(name = "banco_identificacion")
 	private Banco banco;
 
 	// Relacion muchos a muchos
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "clientes_roles", joinColumns = @JoinColumn(name = "per_identificacion"), inverseJoinColumns = @JoinColumn(name = "rol_identificacion"))
 	private List<Rol> roles;
-	
+
+	// Relacion uno a muchos
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Transaction> transaction;
 	
 	@PrePersist
 	@PreUpdate
@@ -63,12 +55,12 @@ public class Cliente implements Serializable {
 	}
 	
 
-	public String getPer_identificacion() {
-		return per_identificacion;
+	public String getIdentificacion() {
+		return identificacion;
 	}
 
-	public void setPer_identificacion(String per_identificacion) {
-		this.per_identificacion = per_identificacion;
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
 	}
 
 	public String getPer_nombre() {
@@ -147,7 +139,7 @@ public class Cliente implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cliente [per_identificacion=" + per_identificacion + ", per_nombre=" + per_nombre + ", per_apellido="
+		return "Cliente [per_identificacion=" + identificacion + ", per_nombre=" + per_nombre + ", per_apellido="
 				+ per_apellido + ", per_sexo=" + per_sexo + ", per_fecha_nacimiento=" + per_fecha_nacimiento
 			     + ", per_numero_celular=" + per_numero_celular + ", per_clave=" + per_clave
 				+ ", fecha_registro=" + fecha_registro + ", banco=" + banco + "]";

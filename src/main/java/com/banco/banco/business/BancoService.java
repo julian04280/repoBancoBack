@@ -2,16 +2,19 @@ package com.banco.banco.business;
 
 import java.util.List;
 
+import com.banco.banco.controller.request.CreateTransactionRequest;
+import com.banco.banco.controller.response.CreateTransactionResponse;
 import com.banco.banco.persistence.entity.Banco;
 
 public interface BancoService {
 	
-	public List<Banco> findAll();
+	List<Banco> findAll();
 	
-	public Banco findById(Integer id);
+	Banco findById(Integer id);
 	
-	public Banco save(Banco banco);
+	Banco save(Banco banco);
 	
-	public void delete(Integer id);
+	void delete(Integer id);
 
+	CreateTransactionResponse createTransaction(CreateTransactionRequest createTransactionRequest);
 }

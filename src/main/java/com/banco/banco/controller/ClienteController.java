@@ -2,6 +2,9 @@ package com.banco.banco.controller;
 
 import java.util.List;
 
+import com.banco.banco.controller.request.CreateTransactionRequest;
+import com.banco.banco.controller.request.OriginCommerceRequest;
+import com.banco.banco.controller.response.ApiResponseDefault;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +63,7 @@ public class ClienteController {
 	// Update
 	@PutMapping("/cliente")
 	public ResponseEntity<Cliente> update(@RequestBody Cliente cliente) {
-		Cliente cliente2 = clienteService.findById(cliente.getPer_identificacion());
+		Cliente cliente2 = clienteService.findById(cliente.getIdentificacion());
 
 		if (cliente2 != null) {
 			BeanUtils.copyProperties(cliente, cliente2);
@@ -80,5 +83,10 @@ public class ClienteController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+
+	@PostMapping("/clientePaga")
+	public ApiResponseDefault clientPay(@RequestBody OriginCommerceRequest originCommerceRequest) {
+		return clienteService.clientPay(originCommerceRequest);
 	}
 }
