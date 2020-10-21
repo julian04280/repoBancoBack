@@ -82,7 +82,7 @@ public class BancoServiceImpl implements BancoService {
 			createTransactionResponse.setDescripcionEstado("Transacción creada correctamente");
 			createTransactionResponse.setUrlRedirigir(createTransactionRequest.getUrlRetorno());
 			createTransactionResponse.setLifetimeSecs("60");
-			createTransactionResponse.setIdTransaccion(String.valueOf(transaction.getTransaction_identificacion()));
+			createTransactionResponse.setIdTransaccion(String.valueOf(transaction.getTransactionIdentificacion()));
 
 		}catch (RuntimeException e){
 

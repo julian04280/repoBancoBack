@@ -85,7 +85,7 @@ public class ClienteController {
 		}
 	}
 
-	@PostMapping("/clientePaga")
+	@PostMapping("/cliente/Paga")
 	public ApiResponseDefault clientPay(@RequestBody OriginCommerceRequest originCommerceRequest) {
 		return clienteService.clientPay(originCommerceRequest);
 	}

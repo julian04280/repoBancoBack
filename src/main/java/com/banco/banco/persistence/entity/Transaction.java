@@ -5,12 +5,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "TRANSACTION")
+@Table(name = "transaccion")
 public class Transaction implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer transaction_identificacion;
+	private Integer transactionIdentificacion;
 
 	@Column(name = "codPasarela", length = 128, nullable = false)
 	private String codPasarela;
@@ -31,12 +31,12 @@ public class Transaction implements Serializable {
 	@JoinColumn(name = "comercio_identificacion")
 	private Comercio comercio;
 
-	public Integer getTransaction_identificacion() {
-		return transaction_identificacion;
+	public Integer getTransactionIdentificacion() {
+		return transactionIdentificacion;
 	}
 
-	public void setTransaction_identificacion(Integer transaction_identificacion) {
-		this.transaction_identificacion = transaction_identificacion;
+	public void setTransactionIdentificacion(Integer transactionIdentificacion) {
+		this.transactionIdentificacion = transactionIdentificacion;
 	}
 
 	public String getCodPasarela() {
@@ -82,7 +82,7 @@ public class Transaction implements Serializable {
 	@Override
 	public String toString() {
 		return "Transaction{" +
-				"transaction_identificacion=" + transaction_identificacion +
+				"transaction_identificacion=" + transactionIdentificacion +
 				", codPasarela='" + codPasarela + '\'' +
 				", referencia='" + referencia + '\'' +
 				", urlRetorno='" + urlRetorno + '\'' +
