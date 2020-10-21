@@ -13,35 +13,35 @@ public class Cliente implements Serializable {
 	@Id
 	private String identificacion;
 
-	@Column(name = "per_nombre", length = 128, nullable = false)
-	private String per_nombre;
+	@Column(name = "nombre", length = 128, nullable = false)
+	private String nombre;
 
-	@Column(name = "per_apellido", length = 128, nullable = false)
-	private String per_apellido;
+	@Column(name = "apellido", length = 128, nullable = false)
+	private String apellido;
 
-	@Column(name = "per_sexo", nullable = false)
-	private Integer per_sexo;
+	@Column(name = "sexo", nullable = false)
+	private Integer sexo;
 
-	@Column(name = "per_fecha_nacimiento")
-	private LocalDate per_fecha_nacimiento;
+	@Column(name = "fechaNacimiento")
+	private LocalDate fechaNacimiento;
 
-	@Column(name = "per_numero_celular")
-	private Integer per_numero_celular;
+	@Column(name = "numeroCelular")
+	private Integer numeroCelular;
 
-	@Column(name = "per_clave", length = 128, nullable = false)
-	private String per_clave;
+	@Column(name = "clave", length = 128, nullable = false)
+	private String clave;
 
-	@Column(name = "fecha_registro")
-	private LocalDate fecha_registro;
+	@Column(name = "fechaRegistro")
+	private LocalDate fechaRegistro;
 
 	// Relacion muchos a uno
 	@OneToOne
-	@JoinColumn(name = "banco_identificacion")
+	@JoinColumn(name = "bancoIdentificacion")
 	private Banco banco;
 
 	// Relacion muchos a muchos
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "clientes_roles", joinColumns = @JoinColumn(name = "per_identificacion"), inverseJoinColumns = @JoinColumn(name = "rol_identificacion"))
+	@JoinTable(name = "clientesRoles", joinColumns = @JoinColumn(name = "identificacion"), inverseJoinColumns = @JoinColumn(name = "rolIdentificacion"))
 	private List<Rol> roles;
 
 	// Relacion uno a muchos
@@ -51,9 +51,9 @@ public class Cliente implements Serializable {
 	@PrePersist
 	@PreUpdate
 	private void prePersist() {
-		 this.fecha_registro = LocalDate.now();
+		 this.fechaRegistro = LocalDate.now();
 	}
-	
+
 
 	public String getIdentificacion() {
 		return identificacion;
@@ -63,60 +63,60 @@ public class Cliente implements Serializable {
 		this.identificacion = identificacion;
 	}
 
-	public String getPer_nombre() {
-		return per_nombre;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setPer_nombre(String per_nombre) {
-		this.per_nombre = per_nombre;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getPer_apellido() {
-		return per_apellido;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setPer_apellido(String per_apellido) {
-		this.per_apellido = per_apellido;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
-	public Integer getPer_sexo() {
-		return per_sexo;
+	public Integer getSexo() {
+		return sexo;
 	}
 
-	public void setPer_sexo(Integer per_sexo) {
-		this.per_sexo = per_sexo;
+	public void setSexo(Integer sexo) {
+		this.sexo = sexo;
 	}
 
-	public LocalDate getPer_fecha_nacimiento() {
-		return per_fecha_nacimiento;
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setPer_fecha_nacimiento(LocalDate per_fecha_nacimiento) {
-		this.per_fecha_nacimiento = per_fecha_nacimiento;
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Integer getPer_numero_celular() {
-		return per_numero_celular;
+	public Integer getNumeroCelular() {
+		return numeroCelular;
 	}
 
-	public void setPer_numero_celular(Integer per_numero_celular) {
-		this.per_numero_celular = per_numero_celular;
+	public void setNumeroCelular(Integer numeroCelular) {
+		this.numeroCelular = numeroCelular;
 	}
 
-	public String getPer_clave() {
-		return per_clave;
+	public String getClave() {
+		return clave;
 	}
 
-	public void setPer_clave(String per_clave) {
-		this.per_clave = per_clave;
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
-	public LocalDate getFecha_registro() {
-		return fecha_registro;
+	public LocalDate getFechaRegistro() {
+		return fechaRegistro;
 	}
 
-	public void setFecha_registro(LocalDate fecha_registro) {
-		this.fecha_registro = fecha_registro;
+	public void setFechaRegistro(LocalDate fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 
 	public Banco getBanco() {
@@ -135,13 +135,28 @@ public class Cliente implements Serializable {
 		this.roles = roles;
 	}
 
-	private static final long serialVersionUID = 1L;
+	public List<Transaction> getTransaction() {
+		return transaction;
+	}
+
+	public void setTransaction(List<Transaction> transaction) {
+		this.transaction = transaction;
+	}
 
 	@Override
 	public String toString() {
-		return "Cliente [per_identificacion=" + identificacion + ", per_nombre=" + per_nombre + ", per_apellido="
-				+ per_apellido + ", per_sexo=" + per_sexo + ", per_fecha_nacimiento=" + per_fecha_nacimiento
-			     + ", per_numero_celular=" + per_numero_celular + ", per_clave=" + per_clave
-				+ ", fecha_registro=" + fecha_registro + ", banco=" + banco + "]";
+		return "Cliente{" +
+				"identificacion='" + identificacion + '\'' +
+				", nombre='" + nombre + '\'' +
+				", apellido='" + apellido + '\'' +
+				", sexo=" + sexo +
+				", fechaNacimiento=" + fechaNacimiento +
+				", numeroCelular=" + numeroCelular +
+				", clave='" + clave + '\'' +
+				", fechaRegistro=" + fechaRegistro +
+				", banco=" + banco +
+				", roles=" + roles +
+				", transaction=" + transaction +
+				'}';
 	}
 }

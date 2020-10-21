@@ -1,4 +1,4 @@
-package com.banco.banco.controller.response;
+package com.banco.banco.controller.modelResponse;
 
 public class ApiResponseDefault {
 

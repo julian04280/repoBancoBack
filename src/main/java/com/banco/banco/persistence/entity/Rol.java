@@ -21,29 +21,29 @@ public class Rol implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer rol_identificacion;
-	@Column(name = "rol_nombre", length = 128)
-	private String rol_nombre;
+	private Integer rolIdentificacion;
+	@Column(name = "rolNombre", length = 128)
+	private String rolNombre;
 
 	// Relacion muchos a muchos
 	@ManyToMany(mappedBy = "roles", cascade = CascadeType.PERSIST)
 	@JsonIgnore
 	private List<Cliente> clientes;
 
-	public Integer getRol_identificacion() {
-		return rol_identificacion;
+	public Integer getRolIdentificacion() {
+		return rolIdentificacion;
 	}
 
-	public void setRol_identificacion(Integer rol_identificacion) {
-		this.rol_identificacion = rol_identificacion;
+	public void setRolIdentificacion(Integer rolIdentificacion) {
+		this.rolIdentificacion = rolIdentificacion;
 	}
 
-	public String getRol_nombre() {
-		return rol_nombre;
+	public String getRolNombre() {
+		return rolNombre;
 	}
 
-	public void setRol_nombre(String rol_nombre) {
-		this.rol_nombre = rol_nombre;
+	public void setRolNombre(String rolNombre) {
+		this.rolNombre = rolNombre;
 	}
 
 	public List<Cliente> getClientes() {
@@ -54,14 +54,12 @@ public class Rol implements Serializable {
 		this.clientes = clientes;
 	}
 
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	public String toString() {
-		return "Rol [rol_identificacion=" + rol_identificacion + ", rol_nombre=" + rol_nombre
-				+ ", getRol_identificacion()=" + getRol_identificacion() + ", getRol_nombre()=" + getRol_nombre()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+		return "Rol{" +
+				"rolIdentificacion=" + rolIdentificacion +
+				", rolNombre='" + rolNombre + '\'' +
+				", clientes=" + clientes +
+				'}';
 	}
-
 }

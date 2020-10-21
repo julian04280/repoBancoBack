@@ -19,56 +19,56 @@ public class Banco implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer banco_identificacion;
+	private Integer bancoIdentificacion;
 
-	@Column(name = "banco_nombre", length = 128, nullable = false)
-	private String banco_nombre;
+	@Column(name = "bancoNombre", length = 128, nullable = false)
+	private String bancoNombre;
 
-	@Column(name = "banco_llave", length = 128, nullable = false)
-	private String banco_llave;
+	@Column(name = "bancoLlave", length = 128, nullable = false)
+	private String bancoLlave;
 
-	@Column(name = "banco_logo",  length = 128 )
-	private String banco_logo;
+	@Column(name = "bancoLogo",  length = 128 )
+	private String bancoLogo;
 
-	public Integer getBanco_identificacion() {
-		return banco_identificacion;
+	public Integer getBancoIdentificacion() {
+		return bancoIdentificacion;
 	}
 
-	public void setBanco_identificacion(Integer banco_identificacion) {
-		this.banco_identificacion = banco_identificacion;
+	public void setBancoIdentificacion(Integer bancoIdentificacion) {
+		this.bancoIdentificacion = bancoIdentificacion;
 	}
 
-	public String getBanco_nombre() {
-		return banco_nombre;
+	public String getBancoNombre() {
+		return bancoNombre;
 	}
 
-	public void setBanco_nombre(String banco_nombre) {
-		this.banco_nombre = banco_nombre;
+	public void setBancoNombre(String bancoNombre) {
+		this.bancoNombre = bancoNombre;
 	}
 
-	public String getBanco_llave() {
-		return banco_llave;
+	public String getBancoLlave() {
+		return bancoLlave;
 	}
 
-	public void setBanco_llave(String banco_llave) {
-		this.banco_llave = banco_llave;
+	public void setBancoLlave(String bancoLlave) {
+		this.bancoLlave = bancoLlave;
 	}
 
-	
-	public String getBanco_logo() {
-		return banco_logo;
+	public String getBancoLogo() {
+		return bancoLogo;
 	}
 
-	public void setBanco_logo(String banco_logo) {
-		this.banco_logo = banco_logo;
+	public void setBancoLogo(String bancoLogo) {
+		this.bancoLogo = bancoLogo;
 	}
-
-
-	private static final long serialVersionUID = 1L;
 
 	@Override
 	public String toString() {
-		return "Banco [banco_identificacion=" + banco_identificacion + ", banco_nombre=" + banco_nombre
-				+ ", banco_llave=" + banco_llave + ", banco_logo=" + banco_logo + "]";
+		return "Banco{" +
+				"bancoIdentificacion=" + bancoIdentificacion +
+				", bancoNombre='" + bancoNombre + '\'' +
+				", bancoLlave='" + bancoLlave + '\'' +
+				", bancoLogo='" + bancoLogo + '\'' +
+				'}';
 	}
 }

@@ -2,8 +2,8 @@ package com.banco.banco.business;
 
 import java.util.List;
 
-import com.banco.banco.controller.request.OriginCommerceRequest;
-import com.banco.banco.controller.response.ApiResponseDefault;
+import com.banco.banco.controller.modelRequest.OriginCommerceRequest;
+import com.banco.banco.controller.modelResponse.ApiResponseDefault;
 import com.banco.banco.controller.modelRequest.LoginRequest;
 import com.banco.banco.controller.modelResponse.LoginResponse;
 import com.banco.banco.persistence.entity.Cliente;

@@ -2,9 +2,8 @@ package com.banco.banco.controller;
 
 import java.util.List;
 
-import com.banco.banco.controller.request.CreateTransactionRequest;
-import com.banco.banco.controller.request.OriginCommerceRequest;
-import com.banco.banco.controller.response.ApiResponseDefault;
+import com.banco.banco.controller.modelRequest.OriginCommerceRequest;
+import com.banco.banco.controller.modelResponse.ApiResponseDefault;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

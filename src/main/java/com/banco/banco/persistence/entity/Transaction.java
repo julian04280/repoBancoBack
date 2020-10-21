@@ -28,7 +28,7 @@ public class Transaction implements Serializable {
 
 	// Relacion uno a uno
 	@OneToOne
-	@JoinColumn(name = "comercio_identificacion")
+	@JoinColumn(name = "comercioIdentificacion")
 	private Comercio comercio;
 
 	public Integer getTransactionIdentificacion() {
@@ -82,7 +82,7 @@ public class Transaction implements Serializable {
 	@Override
 	public String toString() {
 		return "Transaction{" +
-				"transaction_identificacion=" + transactionIdentificacion +
+				"transactionIdentificacion=" + transactionIdentificacion +
 				", codPasarela='" + codPasarela + '\'' +
 				", referencia='" + referencia + '\'' +
 				", urlRetorno='" + urlRetorno + '\'' +

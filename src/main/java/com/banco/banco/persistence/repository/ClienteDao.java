@@ -14,5 +14,5 @@ import java.util.Optional;
 @EntityScan(basePackages = "com.banco.banco.persistence.entity")
 public interface ClienteDao extends JpaRepository<Cliente, String>{
 
-    Cliente findByIdentificacion(String per_identification);
+    Cliente findByIdentificacion(String identification);
 }

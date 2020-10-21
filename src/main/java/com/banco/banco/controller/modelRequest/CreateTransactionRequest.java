@@ -1,4 +1,4 @@
-package com.banco.banco.controller.request;
+package com.banco.banco.controller.modelRequest;
 
 public class CreateTransactionRequest {
 

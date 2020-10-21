@@ -2,8 +2,8 @@ package com.banco.banco.business;
 
 import java.util.List;
 
-import com.banco.banco.controller.request.CreateTransactionRequest;
-import com.banco.banco.controller.response.CreateTransactionResponse;
+import com.banco.banco.controller.modelRequest.CreateTransactionRequest;
+import com.banco.banco.controller.modelResponse.CreateTransactionResponse;
 import com.banco.banco.persistence.entity.Comercio;
 import com.banco.banco.persistence.entity.Cuenta;
 import com.banco.banco.persistence.entity.Transaction;
@@ -63,16 +63,18 @@ public class BancoServiceImpl implements BancoService {
 			Transaction transaction = new Transaction();
 			transaction.setCodPasarela(createTransactionRequest.getCodPasarela());
 
-			Comercio comercio = comercioDao.findByRefComercio(createTransactionRequest.getOrigenComercio().getRefComercio());
-			if(comercio == null){
-				throw new RuntimeException("Referencia Comercio Incorrecta");
-			}
-			transaction.setComercio(comercio);
+			Comercio comercio = new Comercio();
+			comercio.setRefComercio(createTransactionRequest.getOrigenComercio().getRefComercio());
+			comercio.setDescripcion(createTransactionRequest.getOrigenComercio().getDescripcion());
+			comercio.setValor(Double.parseDouble(createTransactionRequest.getOrigenComercio().getValor()));
+			comercio.setTipo("SOLICITUD TRANSACCION");
 
 			Cuenta cuenta = cuentaDao.findByCodCuenta(createTransactionRequest.getDestinoComercio().getCodCuenta());
 			if(cuenta == null){
 				throw new RuntimeException("Codigo Cuenta Incorrecto");
 			}
+			comercio.setCuenta(cuenta);
+			transaction.setComercio(comercio);
 			transaction.setCuenta(cuenta);
 			transaction.setReferencia(createTransactionRequest.getReferencia());
 			transaction.setUrlRetorno(createTransactionRequest.getUrlRetorno());

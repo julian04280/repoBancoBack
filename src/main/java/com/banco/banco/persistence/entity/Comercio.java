@@ -9,7 +9,7 @@ public class Comercio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer comercio_identificacion;
+	private Integer comercioIdentificacion;
 
 	@Column(name = "refComercio", length = 128, nullable = false)
 	private String refComercio;
@@ -21,19 +21,19 @@ public class Comercio implements Serializable {
 	private Double valor;
 
 	@Column(name = "tipo", nullable = false)
-	private Double tipo;
+	private String tipo;
 
 	// Relacion uno a uno
 	@OneToOne
 	@JoinColumn(name = "codCuenta")
 	private Cuenta cuenta;
 
-	public Integer getComercio_identificacion() {
-		return comercio_identificacion;
+	public Integer getComercioIdentificacion() {
+		return comercioIdentificacion;
 	}
 
-	public void setComercio_identificacion(Integer comercio_identificacion) {
-		this.comercio_identificacion = comercio_identificacion;
+	public void setComercioIdentificacion(Integer comercioIdentificacion) {
+		this.comercioIdentificacion = comercioIdentificacion;
 	}
 
 	public String getRefComercio() {
@@ -60,11 +60,11 @@ public class Comercio implements Serializable {
 		this.valor = valor;
 	}
 
-	public Double getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Double tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
@@ -79,7 +79,7 @@ public class Comercio implements Serializable {
 	@Override
 	public String toString() {
 		return "Comercio{" +
-				"comercio_identificacion=" + comercio_identificacion +
+				"comercioIdentificacion=" + comercioIdentificacion +
 				", refComercio='" + refComercio + '\'' +
 				", descripcion='" + descripcion + '\'' +
 				", valor=" + valor +

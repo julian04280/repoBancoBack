@@ -66,12 +66,10 @@ public class RolController {
 	@PutMapping("/rol")
 	public ResponseEntity<Rol> update(@RequestBody Rol rol) {
 		// Buscar ese usuario por id
-		Rol rol2 = rolService.findById(rol.getRol_identificacion());
+		Rol rol2 = rolService.findById(rol.getRolIdentificacion());
 
 		if (rol2 != null) {
 			BeanUtils.copyProperties(rol, rol2);
-			//rol2.setRol_nombre(rol.getRol_nombre());
-			// Se guarda el usuario actualizado
 			return ResponseEntity.ok(rolService.save(rol2));
 
 		} else {

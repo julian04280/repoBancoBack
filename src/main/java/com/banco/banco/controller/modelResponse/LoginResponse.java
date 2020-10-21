@@ -2,56 +2,55 @@ package com.banco.banco.controller.modelResponse;
 
 public class LoginResponse {
 
-	private Integer rol_identificacion;
+	private Integer rolIdentificacion;
 	
-	private String rol_nombre;
+	private String rolNombre;
 	
 	private String menssage;
 	
-	private String per_identificacion;
+	private String identificacion;
 
-	private String per_nombre;
+	private String nombre;
 
-	private String per_apellido;
+	private String apellido;
 	
-	private Integer banco_identificacion;
+	private Integer bancoIdentificacion;
 
-	private String banco_nombre;
+	private String bancoNombre;
 	
-	private String banco_llave;
+	private String bancoLlave;
 
-	private String banco_logo;
+	private String bancoLogo;
 
-	public LoginResponse(Integer rol_identificacion, String rol_nombre, String menssage, String per_identificacion,
-			String per_nombre, String per_apellido, Integer banco_identificacion, String banco_nombre,
-			String banco_llave, String banco_logo) {
-		super();
-		this.rol_identificacion = rol_identificacion;
-		this.rol_nombre = rol_nombre;
+	public LoginResponse() {}
+
+	public LoginResponse(Integer rolIdentificacion, String rolNombre, String menssage, String identificacion, String nombre, String apellido, Integer bancoIdentificacion, String bancoNombre, String bancoLlave, String bancoLogo) {
+		this.rolIdentificacion = rolIdentificacion;
+		this.rolNombre = rolNombre;
 		this.menssage = menssage;
-		this.per_identificacion = per_identificacion;
-		this.per_nombre = per_nombre;
-		this.per_apellido = per_apellido;
-		this.banco_identificacion = banco_identificacion;
-		this.banco_nombre = banco_nombre;
-		this.banco_llave = banco_llave;
-		this.banco_logo = banco_logo;
+		this.identificacion = identificacion;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.bancoIdentificacion = bancoIdentificacion;
+		this.bancoNombre = bancoNombre;
+		this.bancoLlave = bancoLlave;
+		this.bancoLogo = bancoLogo;
 	}
 
-	public Integer getRol_identificacion() {
-		return rol_identificacion;
+	public Integer getRolIdentificacion() {
+		return rolIdentificacion;
 	}
 
-	public void setRol_identificacion(Integer rol_identificacion) {
-		this.rol_identificacion = rol_identificacion;
+	public void setRolIdentificacion(Integer rolIdentificacion) {
+		this.rolIdentificacion = rolIdentificacion;
 	}
 
-	public String getRol_nombre() {
-		return rol_nombre;
+	public String getRolNombre() {
+		return rolNombre;
 	}
 
-	public void setRol_nombre(String rol_nombre) {
-		this.rol_nombre = rol_nombre;
+	public void setRolNombre(String rolNombre) {
+		this.rolNombre = rolNombre;
 	}
 
 	public String getMenssage() {
@@ -62,64 +61,59 @@ public class LoginResponse {
 		this.menssage = menssage;
 	}
 
-	public String getPer_identificacion() {
-		return per_identificacion;
+	public String getIdentificacion() {
+		return identificacion;
 	}
 
-	public void setPer_identificacion(String per_identificacion) {
-		this.per_identificacion = per_identificacion;
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
 	}
 
-	public String getPer_nombre() {
-		return per_nombre;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setPer_nombre(String per_nombre) {
-		this.per_nombre = per_nombre;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getPer_apellido() {
-		return per_apellido;
+	public String getApellido() {
+		return apellido;
 	}
 
-	public void setPer_apellido(String per_apellido) {
-		this.per_apellido = per_apellido;
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
-	public Integer getBanco_identificacion() {
-		return banco_identificacion;
+	public Integer getBancoIdentificacion() {
+		return bancoIdentificacion;
 	}
 
-	public void setBanco_identificacion(Integer banco_identificacion) {
-		this.banco_identificacion = banco_identificacion;
+	public void setBancoIdentificacion(Integer bancoIdentificacion) {
+		this.bancoIdentificacion = bancoIdentificacion;
 	}
 
-	public String getBanco_nombre() {
-		return banco_nombre;
+	public String getBancoNombre() {
+		return bancoNombre;
 	}
 
-	public void setBanco_nombre(String banco_nombre) {
-		this.banco_nombre = banco_nombre;
+	public void setBancoNombre(String bancoNombre) {
+		this.bancoNombre = bancoNombre;
 	}
 
-	public String getBanco_llave() {
-		return banco_llave;
+	public String getBancoLlave() {
+		return bancoLlave;
 	}
 
-	public void setBanco_llave(String banco_llave) {
-		this.banco_llave = banco_llave;
+	public void setBancoLlave(String bancoLlave) {
+		this.bancoLlave = bancoLlave;
 	}
 
-	public String getBanco_logo() {
-		return banco_logo;
+	public String getBancoLogo() {
+		return bancoLogo;
 	}
 
-	public void setBanco_logo(String banco_logo) {
-		this.banco_logo = banco_logo;
+	public void setBancoLogo(String bancoLogo) {
+		this.bancoLogo = bancoLogo;
 	}
-	
-	public LoginResponse() {
-		
-	}
-	
 }

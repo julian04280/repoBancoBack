@@ -2,8 +2,8 @@ package com.banco.banco.controller;
 
 import java.util.List;
 
-import com.banco.banco.controller.request.CreateTransactionRequest;
-import com.banco.banco.controller.response.CreateTransactionResponse;
+import com.banco.banco.controller.modelRequest.CreateTransactionRequest;
+import com.banco.banco.controller.modelResponse.CreateTransactionResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,7 +56,7 @@ public class BancoController {
 	// Update
 	@PutMapping("/banco")
 	public ResponseEntity<Banco> update(@RequestBody Banco banco) {
-		Banco banco2 = bancoService.findById(banco.getBanco_identificacion());
+		Banco banco2 = bancoService.findById(banco.getBancoIdentificacion());
 
 		if (banco2 != null) {
 			BeanUtils.copyProperties(banco, banco2);
@@ -79,7 +79,7 @@ public class BancoController {
 	}
 
 	// Create
-	@PostMapping("/crearTransaccion")
+	@PostMapping("/banco/crearTransaccion")
 	@ResponseBody
 	public CreateTransactionResponse create(@RequestBody CreateTransactionRequest createTransactionRequest) {
 		return bancoService.createTransaction(createTransactionRequest);
