@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.banco.banco.business.ClienteService;
+import com.banco.banco.controller.modelRequest.LoginRequest;
+import com.banco.banco.controller.modelResponse.LoginResponse;
 import com.banco.banco.persistence.entity.Cliente;
 
 @CrossOrigin(origins = { "*" })
@@ -83,6 +85,11 @@ public class ClienteController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+
+	@PostMapping("/login")
+	public LoginResponse consultLogin(@RequestBody LoginRequest login) {
+		return clienteService.consultLogin(login);
 	}
 
 	@PostMapping("/cliente/Paga")

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.banco.banco.controller.request.OriginCommerceRequest;
 import com.banco.banco.controller.response.ApiResponseDefault;
+import com.banco.banco.controller.modelRequest.LoginRequest;
+import com.banco.banco.controller.modelResponse.LoginResponse;
 import com.banco.banco.persistence.entity.Cliente;
 
 
@@ -16,6 +18,8 @@ public interface ClienteService {
 	public Cliente save(Cliente banco);
 	
 	public void delete(String id);
+
+	public LoginResponse consultLogin(LoginRequest login);
 
 	ApiResponseDefault clientPay (OriginCommerceRequest originCommerceRequest);
 
