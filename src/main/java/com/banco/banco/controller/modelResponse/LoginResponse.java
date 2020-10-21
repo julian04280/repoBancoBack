@@ -1,11 +1,13 @@
 package com.banco.banco.controller.modelResponse;
 
+import com.banco.banco.persistence.entity.Rol;
+
+import java.util.List;
+
 public class LoginResponse {
 
-	private Integer rolIdentificacion;
-	
-	private String rolNombre;
-	
+	private List<Rol> roles;
+
 	private String menssage;
 	
 	private String identificacion;
@@ -24,9 +26,8 @@ public class LoginResponse {
 
 	public LoginResponse() {}
 
-	public LoginResponse(Integer rolIdentificacion, String rolNombre, String menssage, String identificacion, String nombre, String apellido, Integer bancoIdentificacion, String bancoNombre, String bancoLlave, String bancoLogo) {
-		this.rolIdentificacion = rolIdentificacion;
-		this.rolNombre = rolNombre;
+	public LoginResponse(List<Rol> roles, String menssage, String identificacion, String nombre, String apellido, Integer bancoIdentificacion, String bancoNombre, String bancoLlave, String bancoLogo) {
+		this.roles = roles;
 		this.menssage = menssage;
 		this.identificacion = identificacion;
 		this.nombre = nombre;
@@ -37,20 +38,12 @@ public class LoginResponse {
 		this.bancoLogo = bancoLogo;
 	}
 
-	public Integer getRolIdentificacion() {
-		return rolIdentificacion;
+	public List<Rol> getRoles() {
+		return roles;
 	}
 
-	public void setRolIdentificacion(Integer rolIdentificacion) {
-		this.rolIdentificacion = rolIdentificacion;
-	}
-
-	public String getRolNombre() {
-		return rolNombre;
-	}
-
-	public void setRolNombre(String rolNombre) {
-		this.rolNombre = rolNombre;
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 
 	public String getMenssage() {

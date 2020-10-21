@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.banco.banco.controller.modelRequest.OriginCommerceRequest;
 import com.banco.banco.controller.modelResponse.ApiResponseDefault;
+import com.banco.banco.persistence.entity.Rol;
+import com.banco.banco.persistence.repository.RolDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,9 @@ public class ClienteServiceImpl implements ClienteService {
 
 	@Autowired
 	private ClienteDao clienteDao;
+
+	@Autowired
+	private RolDao rolDao;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -93,19 +98,17 @@ public class ClienteServiceImpl implements ClienteService {
 				loginResponse.setBancoLlave(cliente.getBanco().getBancoLlave());
 				loginResponse.setBancoNombre(cliente.getBanco().getBancoNombre());
 				loginResponse.setBancoLogo(cliente.getBanco().getBancoLogo());
-				loginResponse.setRolIdentificacion(cliente.getRoles().get(0).getRolIdentificacion());
-				loginResponse.setRolNombre(cliente.getRoles().get(0).getRolNombre());
+
+				loginResponse.setRoles(rolDao.findAll());
 				loginResponse.setMenssage("ok");
 				return loginResponse;
 			}
 			else {
-				loginResponse.setRolIdentificacion(1);
 				loginResponse.setMenssage("Contraseña incorrecta");
 				return loginResponse;
 			}
 		}
 		else {
-			loginResponse.setRolIdentificacion(1);
 			loginResponse.setMenssage("Usuario no encontrado");
 			return loginResponse;
 		}

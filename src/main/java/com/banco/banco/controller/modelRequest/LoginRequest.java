@@ -7,7 +7,6 @@ public class LoginRequest {
 	private String passLogin;
 
 	public LoginRequest(String identication, String passLogin) {
-		super();
 		this.identication = identication;
 		this.passLogin = passLogin;
 	}
