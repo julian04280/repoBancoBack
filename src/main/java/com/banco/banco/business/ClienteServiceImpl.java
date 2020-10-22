@@ -98,8 +98,7 @@ public class ClienteServiceImpl implements ClienteService {
 				loginResponse.setBancoLlave(cliente.getBanco().getBancoLlave());
 				loginResponse.setBancoNombre(cliente.getBanco().getBancoNombre());
 				loginResponse.setBancoLogo(cliente.getBanco().getBancoLogo());
-
-				loginResponse.setRoles(rolDao.findAll());
+				loginResponse.setRoles(cliente.getRoles());
 				loginResponse.setMenssage("ok");
 				return loginResponse;
 			}
