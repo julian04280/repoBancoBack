@@ -2,63 +2,18 @@ package com.banco.banco.controller.modelRequest;
 
 public class OriginCommerceRequest {
 
-    private String refComercio;
-    private String descripcion;
-    private String valor;
-
-    private String numeroDocumento;
-    private String tipoDocumento;
     private String nombreComprador;
     private String numeroCelular;
+    private String apellidoComprador;
+    private String numeroCedula;
+    private String valor;
 
-    public OriginCommerceRequest(String refComercio, String descripcion, String valor, String numeroDocumento, String tipoDocumento, String nombreComprador, String numeroCelular) {
-        this.refComercio = refComercio;
-        this.descripcion = descripcion;
-        this.valor = valor;
-        this.numeroDocumento = numeroDocumento;
-        this.tipoDocumento = tipoDocumento;
+    public OriginCommerceRequest(String nombreComprador, String numeroCelular, String apellidoComprador, String numeroCedula, String valor) {
         this.nombreComprador = nombreComprador;
         this.numeroCelular = numeroCelular;
-    }
-
-    public String getRefComercio() {
-        return refComercio;
-    }
-
-    public void setRefComercio(String refComercio) {
-        this.refComercio = refComercio;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getValor() {
-        return valor;
-    }
-
-    public void setValor(String valor) {
+        this.apellidoComprador = apellidoComprador;
+        this.numeroCedula = numeroCedula;
         this.valor = valor;
-    }
-
-    public String getNumeroDocumento() {
-        return numeroDocumento;
-    }
-
-    public void setNumeroDocumento(String numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
-    }
-
-    public String getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(String tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
     }
 
     public String getNombreComprador() {
@@ -75,5 +30,29 @@ public class OriginCommerceRequest {
 
     public void setNumeroCelular(String numeroCelular) {
         this.numeroCelular = numeroCelular;
+    }
+
+    public String getApellidoComprador() {
+        return apellidoComprador;
+    }
+
+    public void setApellidoComprador(String apellidoComprador) {
+        this.apellidoComprador = apellidoComprador;
+    }
+
+    public String getNumeroCedula() {
+        return numeroCedula;
+    }
+
+    public void setNumeroCedula(String numeroCedula) {
+        this.numeroCedula = numeroCedula;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 }

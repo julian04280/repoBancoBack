@@ -4,10 +4,8 @@ import java.util.List;
 
 import com.banco.banco.controller.modelRequest.CreateTransactionRequest;
 import com.banco.banco.controller.modelResponse.CreateTransactionResponse;
-import com.banco.banco.persistence.entity.Comercio;
 import com.banco.banco.persistence.entity.Cuenta;
 import com.banco.banco.persistence.entity.Transaction;
-import com.banco.banco.persistence.repository.ComercioDao;
 import com.banco.banco.persistence.repository.CuentaDao;
 import com.banco.banco.persistence.repository.TransactionDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +23,6 @@ public class BancoServiceImpl implements BancoService {
 
 	@Autowired
 	private TransactionDao transactionDao;
-
-	@Autowired
-	private ComercioDao comercioDao;
 
 	@Autowired
 	private CuentaDao cuentaDao;
@@ -61,28 +56,24 @@ public class BancoServiceImpl implements BancoService {
 
 			//Para Crear una transaccion se debe tener registrado la cuenta y el comercio en el banco
 			Transaction transaction = new Transaction();
-			transaction.setCodPasarela(createTransactionRequest.getCodPasarela());
+			transaction.setFecha(createTransactionRequest.getFecha());
+			transaction.setMonto(createTransactionRequest.getMonto());
+			transaction.setDescripcion(createTransactionRequest.getDescripcion());
+			transaction.setEstado("CREADA");
+			transaction.setCuentaRecaudador(createTransactionRequest.getCuentaRecaudador());
 
-			Comercio comercio = new Comercio();
-			comercio.setRefComercio(createTransactionRequest.getOrigenComercio().getRefComercio());
-			comercio.setDescripcion(createTransactionRequest.getOrigenComercio().getDescripcion());
-			comercio.setValor(Double.parseDouble(createTransactionRequest.getOrigenComercio().getValor()));
-			comercio.setTipo("SOLICITUD TRANSACCION");
-
-			Cuenta cuenta = cuentaDao.findByCodCuenta(createTransactionRequest.getDestinoComercio().getCodCuenta());
+			Cuenta cuenta = cuentaDao.findByCodCuenta(createTransactionRequest.getCuenta());
 			if(cuenta == null){
 				throw new RuntimeException("Codigo Cuenta Incorrecto");
 			}
-			comercio.setCuenta(cuenta);
-			transaction.setComercio(comercio);
+
 			transaction.setCuenta(cuenta);
-			transaction.setReferencia(createTransactionRequest.getReferencia());
-			transaction.setUrlRetorno(createTransactionRequest.getUrlRetorno());
+
 			transactionDao.save(transaction);
 			createTransactionResponse.setCodigoEstado("200");
-			createTransactionResponse.setEstado("OK");
+			createTransactionResponse.setEstado("CREADA");
 			createTransactionResponse.setDescripcionEstado("Transacción creada correctamente");
-			createTransactionResponse.setUrlRedirigir(createTransactionRequest.getUrlRetorno());
+			createTransactionResponse.setUrlRedirigir(createTransactionRequest.getUrlRetorno() + "/" + transaction.getTransactionIdentificacion());
 			createTransactionResponse.setLifetimeSecs("60");
 			createTransactionResponse.setIdTransaccion(String.valueOf(transaction.getTransactionIdentificacion()));
 

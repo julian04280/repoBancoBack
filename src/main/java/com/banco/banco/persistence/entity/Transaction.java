@@ -2,6 +2,7 @@ package com.banco.banco.persistence.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -12,24 +13,33 @@ public class Transaction implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer transactionIdentificacion;
 
-	@Column(name = "codPasarela", length = 128, nullable = false)
-	private String codPasarela;
+	@Column(name = "fecha")
+	private LocalDate fecha;
 
-	@Column(name = "referencia", length = 128, nullable = false)
-	private String referencia;
+	@Column(name = "monto", nullable = false)
+	private Double monto;
 
-	@Column(name = "urlRetorno", nullable = false)
-	private String urlRetorno;
+	@Column(name = "descripcion", nullable = false)
+	private String descripcion;
+
+	@Column(name = "estado", nullable = false)
+	private String estado;
+
+	@Column(name = "cuentaRecaudador", nullable = false)
+	private String cuentaRecaudador;
 
 	// Relacion uno a uno
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "codCuenta")
 	private Cuenta cuenta;
 
 	// Relacion uno a uno
-	@OneToOne
-	@JoinColumn(name = "comercioIdentificacion")
-	private Comercio comercio;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "tipoTransaccion")
+	private TipoTransaccion tipoTransaccion;
+
+	public Transaction() {
+	}
 
 	public Integer getTransactionIdentificacion() {
 		return transactionIdentificacion;
@@ -39,28 +49,44 @@ public class Transaction implements Serializable {
 		this.transactionIdentificacion = transactionIdentificacion;
 	}
 
-	public String getCodPasarela() {
-		return codPasarela;
+	public LocalDate getFecha() {
+		return fecha;
 	}
 
-	public void setCodPasarela(String codPasarela) {
-		this.codPasarela = codPasarela;
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
 	}
 
-	public String getReferencia() {
-		return referencia;
+	public Double getMonto() {
+		return monto;
 	}
 
-	public void setReferencia(String referencia) {
-		this.referencia = referencia;
+	public void setMonto(Double monto) {
+		this.monto = monto;
 	}
 
-	public String getUrlRetorno() {
-		return urlRetorno;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setUrlRetorno(String urlRetorno) {
-		this.urlRetorno = urlRetorno;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getCuentaRecaudador() {
+		return cuentaRecaudador;
+	}
+
+	public void setCuentaRecaudador(String cuentaRecaudador) {
+		this.cuentaRecaudador = cuentaRecaudador;
 	}
 
 	public Cuenta getCuenta() {
@@ -71,23 +97,25 @@ public class Transaction implements Serializable {
 		this.cuenta = cuenta;
 	}
 
-	public Comercio getComercio() {
-		return comercio;
+	public TipoTransaccion getTipoTransaccion() {
+		return tipoTransaccion;
 	}
 
-	public void setComercio(Comercio comercio) {
-		this.comercio = comercio;
+	public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
+		this.tipoTransaccion = tipoTransaccion;
 	}
 
 	@Override
 	public String toString() {
 		return "Transaction{" +
 				"transactionIdentificacion=" + transactionIdentificacion +
-				", codPasarela='" + codPasarela + '\'' +
-				", referencia='" + referencia + '\'' +
-				", urlRetorno='" + urlRetorno + '\'' +
+				", fecha=" + fecha +
+				", monto=" + monto +
+				", descripcion='" + descripcion + '\'' +
+				", estado='" + estado + '\'' +
+				", cuentaRecaudador='" + cuentaRecaudador + '\'' +
 				", cuenta=" + cuenta +
-				", comercio=" + comercio +
+				", tipoTransaccion=" + tipoTransaccion +
 				'}';
 	}
 }

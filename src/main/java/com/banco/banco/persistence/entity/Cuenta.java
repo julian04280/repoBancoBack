@@ -2,6 +2,7 @@ package com.banco.banco.persistence.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "CUENTA")
@@ -16,11 +17,17 @@ public class Cuenta implements Serializable {
 	@Column(name = "descripcion", nullable = false)
 	private String descripcion;
 
-	@Column(name = "idTitularCuenta", nullable = false)
-	private String idTitularCuenta;
+	// Relacion uno a muchos
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	private List<Cliente> cliente;
 
-	@Column(name = "nombreTitularCuenta", nullable = false)
-	private String nombreTitularCuenta;
+	// Relacion muchos a uno
+	@OneToOne
+	@JoinColumn(name = "bancoIdentificacion")
+	private Banco banco;
+
+	public Cuenta() {
+	}
 
 	public String getCodCuenta() {
 		return codCuenta;
@@ -46,20 +53,20 @@ public class Cuenta implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getIdTitularCuenta() {
-		return idTitularCuenta;
+	public List<Cliente> getCliente() {
+		return cliente;
 	}
 
-	public void setIdTitularCuenta(String idTitularCuenta) {
-		this.idTitularCuenta = idTitularCuenta;
+	public void setCliente(List<Cliente> cliente) {
+		this.cliente = cliente;
 	}
 
-	public String getNombreTitularCuenta() {
-		return nombreTitularCuenta;
+	public Banco getBanco() {
+		return banco;
 	}
 
-	public void setNombreTitularCuenta(String nombreTitularCuenta) {
-		this.nombreTitularCuenta = nombreTitularCuenta;
+	public void setBanco(Banco banco) {
+		this.banco = banco;
 	}
 
 	@Override
@@ -68,8 +75,8 @@ public class Cuenta implements Serializable {
 				"codCuenta='" + codCuenta + '\'' +
 				", tipo='" + tipo + '\'' +
 				", descripcion='" + descripcion + '\'' +
-				", idTitularCuenta='" + idTitularCuenta + '\'' +
-				", nombreTitularCuenta='" + nombreTitularCuenta + '\'' +
+				", cliente=" + cliente +
+				", banco=" + banco +
 				'}';
 	}
 }

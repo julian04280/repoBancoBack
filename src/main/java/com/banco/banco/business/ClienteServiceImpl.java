@@ -55,16 +55,10 @@ public class ClienteServiceImpl implements ClienteService {
 
 		try{
 
-			Cliente cliente = clienteDao.findByIdentificacion(originCommerceRequest.getNumeroDocumento());
+			Cliente cliente = clienteDao.findByIdentificacion(originCommerceRequest.getNumeroCedula());
 
 			if(cliente == null){
-
-				cliente = new Cliente();
-				cliente.setIdentificacion(originCommerceRequest.getNumeroDocumento());
-				cliente.setNombre(originCommerceRequest.getNombreComprador());
-				cliente.setNumeroCelular(Integer.parseInt(originCommerceRequest.getNumeroCelular()));
-				clienteDao.save(cliente);
-
+				throw new RuntimeException("Cliente no encontrado");
 			}
 
 			apiResponseDefault.setCodStatus("200");
