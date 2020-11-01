@@ -19,10 +19,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "roles")
 public class Rol implements Serializable {
 
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "rol_identificacion")
 	private Integer rolIdentificacion;
-	@Column(name = "rolNombre", length = 128)
+	@Column(name = "rol_nombre", length = 128)
 	private String rolNombre;
 
 	// Relacion muchos a muchos
@@ -53,13 +56,7 @@ public class Rol implements Serializable {
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
-
-	@Override
-	public String toString() {
-		return "Rol{" +
-				"rolIdentificacion=" + rolIdentificacion +
-				", rolNombre='" + rolNombre + '\'' +
-				", clientes=" + clientes +
-				'}';
-	}
+    
+	private static final long serialVersionUID = 1L;
+	
 }

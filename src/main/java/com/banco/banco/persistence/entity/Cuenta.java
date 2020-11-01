@@ -2,32 +2,29 @@ package com.banco.banco.persistence.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table(name = "CUENTA")
+@Table(name = "cuentas")
 public class Cuenta implements Serializable {
 
 	@Id
+	@Column(name = "cuenta_cod", length = 128)
 	private String codCuenta;
 
-	@Column(name = "tipo", length = 128, nullable = false)
+	@Column(name = "cuenta_tipo", length = 128, nullable = false)
 	private String tipo;
 
-	@Column(name = "descripcion", nullable = false)
+	@Column(name = "cuenta_descripcion", length = 128, nullable = false)
 	private String descripcion;
 
-	// Relacion uno a muchos
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Cliente> cliente;
+
+	@Column(name = "cliente_identificacion")
+	private String clienteId;
 
 	// Relacion muchos a uno
 	@OneToOne
-	@JoinColumn(name = "bancoIdentificacion")
+	@JoinColumn(name = "banco_identificacion")
 	private Banco banco;
-
-	public Cuenta() {
-	}
 
 	public String getCodCuenta() {
 		return codCuenta;
@@ -53,12 +50,14 @@ public class Cuenta implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<Cliente> getCliente() {
-		return cliente;
+	
+
+	public String getClienteId() {
+		return clienteId;
 	}
 
-	public void setCliente(List<Cliente> cliente) {
-		this.cliente = cliente;
+	public void setClienteId(String clienteId) {
+		this.clienteId = clienteId;
 	}
 
 	public Banco getBanco() {
@@ -68,15 +67,18 @@ public class Cuenta implements Serializable {
 	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
+	
 
 	@Override
 	public String toString() {
-		return "Cuenta{" +
-				"codCuenta='" + codCuenta + '\'' +
-				", tipo='" + tipo + '\'' +
-				", descripcion='" + descripcion + '\'' +
-				", cliente=" + cliente +
-				", banco=" + banco +
-				'}';
+		return "Cuenta [codCuenta=" + codCuenta + ", tipo=" + tipo + ", descripcion=" + descripcion + ", clienteId="
+				+ clienteId + ", banco=" + banco + "]";
 	}
+
+
+
+
+
+
+	private static final long serialVersionUID = 1L;
 }

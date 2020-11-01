@@ -1,33 +1,31 @@
 package com.banco.banco.persistence.entity;
 
 import java.io.Serializable;
-import java.sql.Blob;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "bancos")
 public class Banco implements Serializable {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "banco_identificacion")
 	private Integer bancoIdentificacion;
 
-	@Column(name = "bancoNombre", length = 128, nullable = false)
+	@Column(name = "banco_nombre", length = 128, nullable = false)
 	private String bancoNombre;
 
-	@Column(name = "bancoLlave", length = 128, nullable = false)
+	@Column(name = "banco_llave", length = 128, nullable = false)
 	private String bancoLlave;
 
-	@Column(name = "bancoLogo",  length = 128 )
+	@Column(name = "banco_logo",  length = 128 )
 	private String bancoLogo;
 
 	public Integer getBancoIdentificacion() {
@@ -62,13 +60,5 @@ public class Banco implements Serializable {
 		this.bancoLogo = bancoLogo;
 	}
 
-	@Override
-	public String toString() {
-		return "Banco{" +
-				"bancoIdentificacion=" + bancoIdentificacion +
-				", bancoNombre='" + bancoNombre + '\'' +
-				", bancoLlave='" + bancoLlave + '\'' +
-				", bancoLogo='" + bancoLogo + '\'' +
-				'}';
-	}
+	private static final long serialVersionUID = 1L;
 }
