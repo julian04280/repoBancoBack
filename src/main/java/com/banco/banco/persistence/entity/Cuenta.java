@@ -18,9 +18,8 @@ public class Cuenta implements Serializable {
 	@Column(name = "cuenta_descripcion", length = 128,  nullable = false)
 	private String descripcion;
 
-    @ManyToOne 
-    @JoinColumn(name = "cliente_identificacion")
-	private  Cliente cliente;
+    @Column(name ="cliente_identificacion")
+	private  String clienteId;
 
 	// Relacion muchos a uno
 	@OneToOne
@@ -54,25 +53,22 @@ public class Cuenta implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-
 	public Banco getBanco() {
 		return banco;
+	}
+
+	public String getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(String clienteId) {
+		this.clienteId = clienteId;
 	}
 
 	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
 
-	@Override
-	public String toString() {
-		return "Cuenta{" +
-				"codCuenta='" + codCuenta + '\'' +
-				", tipo='" + tipo + '\'' +
-				", descripcion='" + descripcion + '\'' +
-				", cliente=" + cliente +
-				", banco=" + banco +
-				'}';
-	}
 	
 	private static final long serialVersionUID = 1L;
 }

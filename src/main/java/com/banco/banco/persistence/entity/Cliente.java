@@ -12,9 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "clientes")
@@ -55,6 +59,11 @@ public class Cliente implements Serializable {
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "cliente_roles", joinColumns = @JoinColumn(name = "cliente_identificacion"), inverseJoinColumns = @JoinColumn(name = "rol_identificacion"))
 	private List<Rol> roles;
+	
+    
+	@OneToMany(targetEntity = Cuenta.class, cascade = CascadeType.ALL , mappedBy = "clienteId")
+   	@JsonIgnore
+	private List<Cuenta>cuentas;
 
 
 	@PrePersist
