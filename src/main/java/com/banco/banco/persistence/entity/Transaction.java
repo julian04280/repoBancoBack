@@ -3,39 +3,42 @@ package com.banco.banco.persistence.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
-@Table(name = "transaccion")
+@Table(name = "transacciones")
 public class Transaction implements Serializable {
+
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="transaccion_identificacion")
 	private Integer transactionIdentificacion;
 
-	@Column(name = "fecha")
+	@Column(name = "transaccion_fecha")
 	private LocalDate fecha;
 
-	@Column(name = "monto", nullable = false)
+	@Column(name = "transaccion_monto", nullable = false)
 	private Double monto;
 
-	@Column(name = "descripcion", nullable = false)
+	@Column(name = "transaccion_descripcion",  length = 128, nullable = false)
 	private String descripcion;
 
-	@Column(name = "estado", nullable = false)
+	@Column(name = "transaccion_estado",  length = 128, nullable = false)
 	private String estado;
 
-	@Column(name = "cuentaRecaudador", nullable = false)
+	@Column(name = "cuenta_recaudador",  length = 128, nullable = false)
 	private String cuentaRecaudador;
 
 	// Relacion uno a uno
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "codCuenta")
+	@JoinColumn(name = "cuenta_cod")
 	private Cuenta cuenta;
 
 	// Relacion uno a uno
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "tipoTransaccion")
+	@JoinColumn(name = "id_tipotransaccion")
 	private TipoTransaccion tipoTransaccion;
 
 	public Transaction() {

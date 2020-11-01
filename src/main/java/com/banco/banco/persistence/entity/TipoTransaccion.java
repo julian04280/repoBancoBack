@@ -1,19 +1,20 @@
 package com.banco.banco.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+
 
 @Entity
-@Table(name = "tipoTransaccion")
+@Table(name = "tipotransaccion")
 public class TipoTransaccion implements Serializable {
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_tipotransaccion")
 	private Integer idTipoTransaccion;
-	@Column(name = "descripcion", length = 128)
+	
+	@Column(name = "tipotransaccion_descripcion", length = 128)
 	private String descripcion;
 
 	public TipoTransaccion() {
@@ -42,4 +43,6 @@ public class TipoTransaccion implements Serializable {
 				", descripcion='" + descripcion + '\'' +
 				'}';
 	}
+	
+	private static final long serialVersionUID = 1L;
 }

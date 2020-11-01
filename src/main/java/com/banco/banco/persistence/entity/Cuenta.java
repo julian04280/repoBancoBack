@@ -2,28 +2,29 @@ package com.banco.banco.persistence.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
-@Table(name = "CUENTA")
+@Table(name = "cuentas")
 public class Cuenta implements Serializable {
 
+
 	@Id
+	@Column(name = "cuenta_cod", length = 128)
 	private String codCuenta;
 
-	@Column(name = "tipo", length = 128, nullable = false)
+	@Column(name = "cuenta_tipo", length = 128, nullable = false)
 	private String tipo;
 
-	@Column(name = "descripcion", nullable = false)
+	@Column(name = "cuenta_descripcion", length = 128,  nullable = false)
 	private String descripcion;
 
-	// Relacion uno a muchos
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	private List<Cliente> cliente;
+    @ManyToOne 
+    @JoinColumn(name = "cliente_identificacion")
+	private  Cliente cliente;
 
 	// Relacion muchos a uno
 	@OneToOne
-	@JoinColumn(name = "bancoIdentificacion")
+	@JoinColumn(name = "banco_identificacion")
 	private Banco banco;
 
 	public Cuenta() {
@@ -53,13 +54,6 @@ public class Cuenta implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<Cliente> getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(List<Cliente> cliente) {
-		this.cliente = cliente;
-	}
 
 	public Banco getBanco() {
 		return banco;
@@ -79,4 +73,6 @@ public class Cuenta implements Serializable {
 				", banco=" + banco +
 				'}';
 	}
+	
+	private static final long serialVersionUID = 1L;
 }
