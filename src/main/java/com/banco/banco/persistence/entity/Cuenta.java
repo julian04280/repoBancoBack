@@ -16,6 +16,9 @@ public class Cuenta implements Serializable {
 
 	@Column(name = "cuenta_descripcion", length = 128, nullable = false)
 	private String descripcion;
+	
+	@Column(name ="cuenta_valor",  precision=8, scale=2 )
+	private Double valor;
 
 
 	@Column(name = "cliente_identificacion")
@@ -68,6 +71,15 @@ public class Cuenta implements Serializable {
 		this.banco = banco;
 	}
 	
+	
+
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
 
 	@Override
 	public String toString() {

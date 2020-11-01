@@ -9,7 +9,7 @@ INSERT INTO clientes (cliente_identificacion, cliente_fecha_registro, cliente_ap
 INSERT INTO `cliente_roles` (`cliente_identificacion`, `rol_identificacion`) VALUES ('105467218', '1');
 INSERT INTO `cliente_roles` (`cliente_identificacion`, `rol_identificacion`) VALUES ('10456565', '2');
 
-INSERT INTO `cuentas` (`cuenta_cod`, `cuenta_descripcion`, `cuenta_tipo`, `banco_identificacion`, `cliente_identificacion`) VALUES ('0001-22', 'Cuenta de ahorros', 'ahorros'   , '1', '10456565');
-INSERT INTO `cuentas` (`cuenta_cod`, `cuenta_descripcion`, `cuenta_tipo`, `banco_identificacion`, `cliente_identificacion`) VALUES ('0002-23', 'Cuenta corriente' , 'corriente' , '1', '10456565');
-INSERT INTO `cuentas` (`cuenta_cod`, `cuenta_descripcion`, `cuenta_tipo`, `banco_identificacion`, `cliente_identificacion`) VALUES ('0002-24', 'Cuenta de ahorros', 'ahorros'   , '1', '105467218');
-INSERT INTO `cuentas` (`cuenta_cod`, `cuenta_descripcion`, `cuenta_tipo`, `banco_identificacion`, `cliente_identificacion`) VALUES ('0002-25', 'Cuenta  corriente', 'corriente' , '1', '105467218');
+INSERT INTO `cuentas` (`cuenta_cod`, `cuenta_descripcion`, `cuenta_tipo`, `banco_identificacion`, `cliente_identificacion`, `cuenta_valor`) VALUES ('0001-22', 'Cuenta de ahorros', 'ahorros'   , '1', '10456565',  1000.0);
+INSERT INTO `cuentas` (`cuenta_cod`, `cuenta_descripcion`, `cuenta_tipo`, `banco_identificacion`, `cliente_identificacion`, `cuenta_valor`) VALUES ('0002-23', 'Cuenta corriente' , 'corriente' , '1', '10456565',  1000.0);
+INSERT INTO `cuentas` (`cuenta_cod`, `cuenta_descripcion`, `cuenta_tipo`, `banco_identificacion`, `cliente_identificacion`, `cuenta_valor`) VALUES ('0002-24', 'Cuenta de ahorros', 'ahorros'   , '1', '105467218', 1000.0);
+INSERT INTO `cuentas` (`cuenta_cod`, `cuenta_descripcion`, `cuenta_tipo`, `banco_identificacion`, `cliente_identificacion`, `cuenta_valor`) VALUES ('0002-25', 'Cuenta  corriente', 'corriente' , '1', '105467218', 1000.0);
