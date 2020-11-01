@@ -19,7 +19,7 @@ public class Transaction implements Serializable {
 	@Column(name = "transaccion_fecha")
 	private LocalDate fecha;
 
-	@Column(name = "transaccion_monto", precision = 10, scale = 0, columnDefinition = "NUMBER (10)",  nullable = false)
+	@Column(name = "transaccion_monto", precision=8, scale=2 , nullable = false)
 	private Double monto;
 
 	@Column(name = "transaccion_descripcion",  length = 128, nullable = false)
@@ -92,14 +92,6 @@ public class Transaction implements Serializable {
 		this.cuentaRecaudador = cuentaRecaudador;
 	}
 
-	public Cuenta getCuenta() {
-		return cuenta;
-	}
-
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
-	}
-
 	public TipoTransaccion getTipoTransaccion() {
 		return tipoTransaccion;
 	}
@@ -108,17 +100,14 @@ public class Transaction implements Serializable {
 		this.tipoTransaccion = tipoTransaccion;
 	}
 
-	@Override
-	public String toString() {
-		return "Transaction{" +
-				"transactionIdentificacion=" + transactionIdentificacion +
-				", fecha=" + fecha +
-				", monto=" + monto +
-				", descripcion='" + descripcion + '\'' +
-				", estado='" + estado + '\'' +
-				", cuentaRecaudador='" + cuentaRecaudador + '\'' +
-				", cuenta=" + cuenta +
-				", tipoTransaccion=" + tipoTransaccion +
-				'}';
+	public Cuenta getCuenta() {
+		return cuenta;
 	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+    
+	
+	
 }
