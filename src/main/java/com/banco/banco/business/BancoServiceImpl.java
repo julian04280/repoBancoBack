@@ -62,7 +62,7 @@ public class BancoServiceImpl implements BancoService {
 			transaction.setEstado("CREADA");
 			transaction.setCuentaRecaudador(createTransactionRequest.getCuentaRecaudador());
 
-			Cuenta cuenta = cuentaDao.findByCodCuenta(createTransactionRequest.getCuenta());
+			Cuenta cuenta = cuentaDao.findById(createTransactionRequest.getCuenta()).orElse(null);
 			if(cuenta == null){
 				throw new RuntimeException("Codigo Cuenta Incorrecto");
 			}
