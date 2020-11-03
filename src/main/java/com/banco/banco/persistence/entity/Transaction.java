@@ -34,14 +34,11 @@ public class Transaction implements Serializable {
 	private String cuentaRecaudador;
 
 	// Relacion uno a uno
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cuenta_cod")
-	private Cuenta cuenta;
+	@Column(name = "id_cuenta", length = 128)
+	private String idCuenta;
 
-	// Relacion uno a uno
-	@OneToOne
-	@JoinColumn(name = "id_tipotransaccion")
-	private TipoTransaccion tipoTransaccion;
+	@Column(name = "id_tipotransaccion")
+	private Integer tipoTransaccion;
 
 	public Transaction() {
 	}
@@ -102,27 +99,27 @@ public class Transaction implements Serializable {
 		this.cuentaRecaudador = cuentaRecaudador;
 	}
 
-	public TipoTransaccion getTipoTransaccion() {
+	public Integer getTipoTransaccion() {
 		return tipoTransaccion;
 	}
 
-	public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
+	public void setTipoTransaccion(Integer tipoTransaccion) {
 		this.tipoTransaccion = tipoTransaccion;
 	}
 
-	public Cuenta getCuenta() {
-		return cuenta;
+	public String getIdCuenta() {
+		return idCuenta;
 	}
 
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
+	public void setIdCuenta(String idCuenta) {
+		this.idCuenta = idCuenta;
 	}
 
 	@Override
 	public String toString() {
 		return "Transaction [transactionIdentificacion=" + transactionIdentificacion + ", fecha=" + fecha + ", monto="
 				+ monto + ", descripcion=" + descripcion + ", estado=" + estado + ", urlRetorno=" + urlRetorno
-				+ ", cuentaRecaudador=" + cuentaRecaudador + ", cuenta=" + cuenta + ", tipoTransaccion="
+				+ ", cuentaRecaudador=" + cuentaRecaudador + ", idCuenta=" + idCuenta + ", tipoTransaccion="
 				+ tipoTransaccion + "]";
 	}
 

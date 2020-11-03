@@ -1,12 +1,15 @@
 package com.banco.banco.persistence.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "cuentas")
 public class Cuenta implements Serializable {
-
 
 	@Id
 	@Column(name = "cuenta_cod", length = 128)
@@ -17,10 +20,9 @@ public class Cuenta implements Serializable {
 
 	@Column(name = "cuenta_descripcion", length = 128, nullable = false)
 	private String descripcion;
-	
-	@Column(name ="cuenta_valor",  precision=8, scale=2 )
-	private Double valor;
 
+	@Column(name = "cuenta_valor", precision = 8, scale = 2)
+	private Double valor;
 
 	@Column(name = "cliente_identificacion")
 	private String clienteId;
@@ -29,6 +31,11 @@ public class Cuenta implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "banco_identificacion")
 	private Banco banco;
+	
+	// Relacion uno a muchos
+	@OneToMany(targetEntity = Transaction.class, cascade = CascadeType.ALL, mappedBy = "idCuenta")
+	@JsonIgnore
+	private List<Transaction> transacciones;
 
 	public String getCodCuenta() {
 		return codCuenta;
@@ -54,10 +61,6 @@ public class Cuenta implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-<<<<<<< HEAD
-=======
-	
-
 	public String getClienteId() {
 		return clienteId;
 	}
@@ -65,7 +68,6 @@ public class Cuenta implements Serializable {
 	public void setClienteId(String clienteId) {
 		this.clienteId = clienteId;
 	}
->>>>>>> cuenta
 
 	public Banco getBanco() {
 		return banco;
@@ -74,8 +76,6 @@ public class Cuenta implements Serializable {
 	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
-	
-	
 
 	public Double getValor() {
 		return valor;
@@ -90,15 +90,6 @@ public class Cuenta implements Serializable {
 		return "Cuenta [codCuenta=" + codCuenta + ", tipo=" + tipo + ", descripcion=" + descripcion + ", clienteId="
 				+ clienteId + ", banco=" + banco + "]";
 	}
-<<<<<<< HEAD
-	
-=======
 
-
-
-
-
-
->>>>>>> cuenta
 	private static final long serialVersionUID = 1L;
 }

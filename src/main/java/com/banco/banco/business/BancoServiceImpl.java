@@ -67,7 +67,7 @@ public class BancoServiceImpl implements BancoService {
 				throw new RuntimeException("Codigo Cuenta Incorrecto");
 			}
 
-			transaction.setCuenta(cuenta);
+			transaction.setIdCuenta(cuenta.getCodCuenta());
 
 			transactionDao.save(transaction);
 			createTransactionResponse.setCodigoEstado("200");
