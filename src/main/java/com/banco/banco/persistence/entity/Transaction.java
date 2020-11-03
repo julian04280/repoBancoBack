@@ -8,36 +8,38 @@ import java.time.LocalDate;
 @Table(name = "transacciones")
 public class Transaction implements Serializable {
 
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="transaccion_identificacion")
+	@Column(name = "transaccion_identificacion")
 	private Integer transactionIdentificacion;
 
 	@Column(name = "transaccion_fecha")
 	private LocalDate fecha;
 
-	@Column(name = "transaccion_monto", precision=8, scale=2 , nullable = false)
+	@Column(name = "transaccion_monto", precision = 8, scale = 2, nullable = false)
 	private Double monto;
 
-	@Column(name = "transaccion_descripcion",  length = 128, nullable = false)
+	@Column(name = "transaccion_descripcion", length = 128, nullable = false)
 	private String descripcion;
 
-	@Column(name = "transaccion_estado",  length = 128, nullable = false)
+	@Column(name = "transaccion_estado", length = 128, nullable = false)
 	private String estado;
 
-	@Column(name = "cuenta_recaudador",  length = 128, nullable = false)
+	@Column(name = "urlRetorno", length = 128, nullable = false)
+	private String urlRetorno;
+
+	@Column(name = "cuenta_recaudador", length = 128, nullable = false)
 	private String cuentaRecaudador;
 
 	// Relacion uno a uno
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cuenta_cod")
 	private Cuenta cuenta;
 
 	// Relacion uno a uno
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "id_tipotransaccion")
 	private TipoTransaccion tipoTransaccion;
 
@@ -84,6 +86,14 @@ public class Transaction implements Serializable {
 		this.estado = estado;
 	}
 
+	public String getUrlRetorno() {
+		return urlRetorno;
+	}
+
+	public void setUrlRetorno(String urlRetorno) {
+		this.urlRetorno = urlRetorno;
+	}
+
 	public String getCuentaRecaudador() {
 		return cuentaRecaudador;
 	}
@@ -107,7 +117,13 @@ public class Transaction implements Serializable {
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}
-    
-	
-	
+
+	@Override
+	public String toString() {
+		return "Transaction [transactionIdentificacion=" + transactionIdentificacion + ", fecha=" + fecha + ", monto="
+				+ monto + ", descripcion=" + descripcion + ", estado=" + estado + ", urlRetorno=" + urlRetorno
+				+ ", cuentaRecaudador=" + cuentaRecaudador + ", cuenta=" + cuenta + ", tipoTransaccion="
+				+ tipoTransaccion + "]";
+	}
+
 }
