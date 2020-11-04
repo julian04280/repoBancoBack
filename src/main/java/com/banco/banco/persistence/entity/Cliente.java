@@ -58,10 +58,6 @@ public class Cliente implements Serializable {
 	@JoinTable(name = "cliente_roles", joinColumns = @JoinColumn(name = "cliente_identificacion"), inverseJoinColumns = @JoinColumn(name = "rol_identificacion"))
 	private List<Rol> roles;
 	
-    
-	@OneToMany(targetEntity = Cuenta.class, cascade = CascadeType.ALL , mappedBy = "clienteId")
-   	@JsonIgnore
-	private List<Cuenta>cuentas;
 
 	// Relacion uno a muchos
 	@OneToMany(targetEntity = Cuenta.class, cascade = CascadeType.ALL, mappedBy = "clienteId")

@@ -64,14 +64,6 @@ public class Cuenta implements Serializable {
 	}
 
 
-	public String getClienteId() {
-		return clienteId;
-	}
-
-	public void setClienteId(String clienteId) {
-		this.clienteId = clienteId;
-	}
-
 	public Banco getBanco() {
 		return banco;
 	}
@@ -88,13 +80,6 @@ public class Cuenta implements Serializable {
 		this.banco = banco;
 	}
 
-<<<<<<< HEAD
-	
-=======
-	public Double getValor() {
-		return valor;
-	}
-
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
@@ -105,6 +90,5 @@ public class Cuenta implements Serializable {
 				+ clienteId + ", banco=" + banco + "]";
 	}
 
->>>>>>> 5a3ab827a8a3bc9dc62373c32e8b5001e2a82d6d
 	private static final long serialVersionUID = 1L;
 }
