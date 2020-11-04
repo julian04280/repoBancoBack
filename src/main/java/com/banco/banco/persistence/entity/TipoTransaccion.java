@@ -1,7 +1,11 @@
 package com.banco.banco.persistence.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.List;
 
 
 @Entity
@@ -16,6 +20,11 @@ public class TipoTransaccion implements Serializable {
 	
 	@Column(name = "tipotransaccion_descripcion", length = 128)
 	private String descripcion;
+	
+	// Relacion uno a muchos
+	@OneToMany(targetEntity = Transaction.class, cascade = CascadeType.ALL, mappedBy = "tipoTransaccion")
+	@JsonIgnore
+	private List<Transaction> transacciones;
 
 	public TipoTransaccion() {
 	}

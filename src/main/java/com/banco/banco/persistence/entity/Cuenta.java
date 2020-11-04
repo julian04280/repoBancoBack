@@ -1,12 +1,15 @@
 package com.banco.banco.persistence.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "cuentas")
 public class Cuenta implements Serializable {
-
 
 	@Id
 	@Column(name = "cuenta_cod", length = 128)
@@ -15,19 +18,26 @@ public class Cuenta implements Serializable {
 	@Column(name = "cuenta_tipo", length = 128, nullable = false)
 	private String tipo;
 
-	@Column(name = "cuenta_descripcion", length = 128,  nullable = false)
+	@Column(name = "cuenta_descripcion", length = 128, nullable = false)
 	private String descripcion;
 
-    @Column(name ="cliente_identificacion")
-	private  String clienteId;
+
+	@Column(name = "cuenta_valor", precision = 8, scale = 2)
+	private Double valor;
+
+	@Column(name = "cliente_identificacion")
+	private String clienteId;
+
 
 	// Relacion muchos a uno
 	@OneToOne
 	@JoinColumn(name = "banco_identificacion")
 	private Banco banco;
-
-	public Cuenta() {
-	}
+	
+	// Relacion uno a muchos
+	@OneToMany(targetEntity = Transaction.class, cascade = CascadeType.ALL, mappedBy = "idCuenta")
+	@JsonIgnore
+	private List<Transaction> transacciones;
 
 	public String getCodCuenta() {
 		return codCuenta;
@@ -53,6 +63,15 @@ public class Cuenta implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+
+	public String getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(String clienteId) {
+		this.clienteId = clienteId;
+	}
+
 	public Banco getBanco() {
 		return banco;
 	}
@@ -69,6 +88,23 @@ public class Cuenta implements Serializable {
 		this.banco = banco;
 	}
 
+<<<<<<< HEAD
 	
+=======
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+	@Override
+	public String toString() {
+		return "Cuenta [codCuenta=" + codCuenta + ", tipo=" + tipo + ", descripcion=" + descripcion + ", clienteId="
+				+ clienteId + ", banco=" + banco + "]";
+	}
+
+>>>>>>> 5a3ab827a8a3bc9dc62373c32e8b5001e2a82d6d
 	private static final long serialVersionUID = 1L;
 }

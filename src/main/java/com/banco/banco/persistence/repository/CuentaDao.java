@@ -1,15 +1,9 @@
 package com.banco.banco.persistence.repository;
 
-import com.banco.banco.persistence.entity.Cuenta;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Repository;
 
-@Repository
-@EnableJpaRepositories
-@EntityScan(basePackages = "com.banco.banco.persistence.entity")
-public interface CuentaDao extends JpaRepository<Cuenta, Integer> {
+import com.banco.banco.persistence.entity.Cuenta;
 
-    Cuenta findByCodCuenta(String codCuenta);
+public interface CuentaDao extends JpaRepository<Cuenta, String>{
+
 }
