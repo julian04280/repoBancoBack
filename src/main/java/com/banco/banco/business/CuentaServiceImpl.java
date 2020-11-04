@@ -23,6 +23,13 @@ public class CuentaServiceImpl implements CuentaService {
 		
 		return cuentaDao.findAll();
 	}
+	
+	@Override
+	@Transactional(readOnly = true )
+	public List<Cuenta> findByIdCliente(String clienteId) {
+		
+		return cuentaDao.findByClienteId(clienteId);
+	}
 
 	@Override
 	@Transactional(readOnly = true )

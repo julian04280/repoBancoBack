@@ -35,6 +35,13 @@ public class CuentaController {
 		return (!cuentas.isEmpty()) ? ResponseEntity.ok(cuentas): ResponseEntity.notFound().build();		
 	}
 	
+	@GetMapping("/cuenta/cliente/{clienteId}")
+	public ResponseEntity<List<Cuenta> > showIdCuentaCliente(@PathVariable String clienteId){
+		
+		List<Cuenta> cuentas = cuentaService.findByIdCliente(clienteId);
+		return (!cuentas.isEmpty()) ? ResponseEntity.ok(cuentas): ResponseEntity.notFound().build();		
+	}
+	
 	@GetMapping("/cuenta/{id}")
 	public ResponseEntity<?> read(@PathVariable String id){
 		

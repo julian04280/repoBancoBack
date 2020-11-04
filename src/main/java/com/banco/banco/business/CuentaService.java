@@ -8,11 +8,13 @@ public interface CuentaService {
 	
 	List<Cuenta> findAll();
 	
+	List<Cuenta> findByIdCliente(String clienteId);
+	
 	Cuenta findById(String id);
 	
 	Cuenta save(Cuenta banco);
 	
-	public Cuenta  update(Cuenta cuenta);
+	Cuenta  update(Cuenta cuenta);
 	
 	void delete(String id);
 

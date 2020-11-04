@@ -20,3 +20,6 @@ INSERT INTO `transacciones` (`transaccion_identificacion`, `cuenta_recaudador`, 
 
 INSERT INTO `transacciones` (`transaccion_identificacion`, `cuenta_recaudador`, `transaccion_descripcion`, `transaccion_estado`, `transaccion_fecha`, `transaccion_monto`, `urlRetorno`, `id_cuenta`, `id_tipotransaccion`) VALUES (1213, '1313113', 'Pago servicio agua', 'Creada', '2020-10-30', 23000, '18.229.169.221:7777/angular/', '0002-23', 1);
 INSERT INTO `transacciones` (`transaccion_identificacion`, `cuenta_recaudador`, `transaccion_descripcion`, `transaccion_estado`, `transaccion_fecha`, `transaccion_monto`, `urlRetorno`, `id_cuenta`, `id_tipotransaccion`) VALUES (1214, '1313113', 'Pago servicio gas', 'Creada', '2020-10-30', 13.700, '18.229.169.221:7777/angular/', '0002-24', 1);
+
+
+
