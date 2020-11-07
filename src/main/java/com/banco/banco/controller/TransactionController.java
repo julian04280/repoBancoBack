@@ -1,5 +1,6 @@
 package com.banco.banco.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -25,15 +26,31 @@ import com.banco.banco.persistence.entity.Transaction;
 @RequestMapping("api")
 public class TransactionController {
 
+	String url = "http://18.229.169.221:7777/angular/";
+
+	LocalDate date = LocalDate.now();
+
 	@Autowired
 	TransactionService transactionService;
 
 	// Create
 	@PostMapping("/transaction")
 	public ResponseEntity<Transaction> create(@RequestBody Transaction transaction) {
-		Transaction transaction2 = null;
+		Transaction transaction2 = new Transaction();
 		try {
+
+			// Modifica a creada
+			transaction.setEstado("Creado");
+			transaction.setFecha(date);
+
+			System.out.println("Fechas: " + date);
 			transaction2 = transactionService.save(transaction);
+
+			// Modifica el url con el id
+			transaction2.setUrlRetorno(url + transaction2.getTransactionIdentificacion());
+			// transaction2.setFecha(date);
+
+			update(transaction2);
 
 			return ResponseEntity.status(HttpStatus.OK).body(transaction2);
 
