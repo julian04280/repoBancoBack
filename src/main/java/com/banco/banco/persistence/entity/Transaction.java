@@ -21,13 +21,13 @@ public class Transaction implements Serializable {
 	@Column(name = "transaccion_monto", precision = 8, scale = 2, nullable = false)
 	private Double monto;
 
-	@Column(name = "transaccion_descripcion", length = 128, nullable = false)
+	@Column(name = "transaccion_descripcion", length = 128, nullable = true)
 	private String descripcion;
 
 	@Column(name = "transaccion_estado", length = 128, nullable = false)
 	private String estado;
 
-	@Column(name = "urlRetorno", length = 128, nullable = false)
+	@Column(name = "urlRetorno", length = 128, nullable = true)
 	private String urlRetorno;
 
 	@Column(name = "cuenta_recaudador", length = 128, nullable = false)
