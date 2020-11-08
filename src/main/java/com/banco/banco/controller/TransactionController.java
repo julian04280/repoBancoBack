@@ -26,7 +26,8 @@ import com.banco.banco.persistence.entity.Transaction;
 @RequestMapping("api")
 public class TransactionController {
 
-	String url = "http://nodocursoiot.ml:7777/com.banco-1/api/login/";
+	//String url = "http://nodocursoiot.ml:7777/com.banco-1/api/login/";	
+	String url = "http://nodocursoiot.ml:7777/angular/login/";
 	LocalDate date = LocalDate.now();
 
 	@Autowired

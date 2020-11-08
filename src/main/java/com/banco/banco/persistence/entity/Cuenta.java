@@ -83,6 +83,12 @@ public class Cuenta implements Serializable {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
+	
+	
+
+	public Double getValor() {
+		return valor;
+	}
 
 	@Override
 	public String toString() {
