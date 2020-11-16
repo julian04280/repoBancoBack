@@ -39,7 +39,7 @@ public class TransactionController {
 		Transaction transaction2 = new Transaction();
 		try {
 
-			transaction.setEstado("Creado");
+			transaction.setEstado("CREADO");
 			transaction.setFecha(date);
 
 			System.out.println("Fechas: " + date);
