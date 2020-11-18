@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.banco.banco.business.CuentaService;
 import com.banco.banco.business.TransactionService;
+import com.banco.banco.persistence.entity.Cliente;
+import com.banco.banco.persistence.entity.Cuenta;
 import com.banco.banco.persistence.entity.Transaction;
+import com.banco.banco.persistence.repository.CuentaDao;
 
 @CrossOrigin(origins = { "*" })
 @RestController
@@ -32,11 +36,16 @@ public class TransactionController {
 
 	@Autowired
 	TransactionService transactionService;
-
+	//---------------------------------------------------------------------------
+	@Autowired
+	CuentaService cuentaservice;
+	//-----------------------------------------------------------------------------
+	
 	// Create
 	@PostMapping("/transaction")
 	public ResponseEntity<Transaction> create(@RequestBody Transaction transaction) {
 		Transaction transaction2 = new Transaction();
+		
 		try {
 
 			transaction.setEstado("Creado");
@@ -44,7 +53,7 @@ public class TransactionController {
 
 			System.out.println("Fechas: " + date);
 			transaction2 = transactionService.save(transaction);
-
+			
 			// Modifica el url con el id
 			transaction2.setUrlRetorno(url + transaction2.getTransactionIdentificacion());
 
@@ -111,6 +120,34 @@ public class TransactionController {
 			return ResponseEntity.notFound().build();
 		}
 
+	}
+	
+	@PutMapping("/transaction/validacion")
+	public ResponseEntity<Transaction> receppago(@RequestBody Transaction trans){
+		update(trans);
+		Transaction transaction = transactionService.findById(trans.getTransactionIdentificacion());
+		Cuenta cuenta =  cuentaservice.findById(transaction.getIdCuenta());
+		
+		
+		if (transaction != null && cuenta.getValor()>=transaction.getMonto()) {
+			// return ResponseEntity.ok(transaction);
+		
+			cuenta.setValor(cuenta.getValor()-transaction.getMonto());
+			cuentaservice.update(cuenta);
+			transaction.setEstado("Aprobado");
+			update(transaction);
+			return ResponseEntity.status(HttpStatus.OK).body(transaction);
+			
+			
+		} else {
+			// return ResponseEntity.notFound().build();
+			transaction.setEstado("Denegada");
+			update(transaction);
+			return ResponseEntity.status(HttpStatus.OK).body(transaction);
+		}
+		
+		
+		
 	}
 
 }
