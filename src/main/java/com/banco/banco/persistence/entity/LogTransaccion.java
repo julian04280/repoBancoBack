@@ -15,15 +15,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "log_transacciones")
 public class LogTransaccion {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_log_transaccion")
 	private Integer idLogTransaccion;
-	
+
 	@Column(name = "transaccion_fecha")
 	private LocalDate fechaTransaccion;
-	
+
 	// Relacion uno a uno
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "transaccion_identificacion")
@@ -37,6 +37,7 @@ public class LogTransaccion {
 		this.idLogTransaccion = idLogTransaccion;
 	}
 
+	
 	public LocalDate getFechaTransaccion() {
 		return fechaTransaccion;
 	}
@@ -45,6 +46,7 @@ public class LogTransaccion {
 		this.fechaTransaccion = fechaTransaccion;
 	}
 
+	
 	public Transaction getTransaction() {
 		return transaction;
 	}
@@ -58,7 +60,7 @@ public class LogTransaccion {
 		return "LogTransaccion [idLogTransaccion=" + idLogTransaccion + ", fechaTransaccion=" + fechaTransaccion
 				+ ", transaction=" + transaction + "]";
 	}
-	
+
 	private static final long serialVersionUID = 1L;
 
 }
