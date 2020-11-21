@@ -22,11 +22,6 @@ public class Banco implements Serializable {
 	@Column(name = "banco_nombre", length = 128, nullable = false)
 	private String bancoNombre;
 
-	@Column(name = "banco_llave", length = 128, nullable = false)
-	private String bancoLlave;
-
-	@Column(name = "banco_logo",  length = 128 )
-	private String bancoLogo;
 
 	public Integer getBancoIdentificacion() {
 		return bancoIdentificacion;
@@ -44,21 +39,6 @@ public class Banco implements Serializable {
 		this.bancoNombre = bancoNombre;
 	}
 
-	public String getBancoLlave() {
-		return bancoLlave;
-	}
-
-	public void setBancoLlave(String bancoLlave) {
-		this.bancoLlave = bancoLlave;
-	}
-
-	public String getBancoLogo() {
-		return bancoLogo;
-	}
-
-	public void setBancoLogo(String bancoLogo) {
-		this.bancoLogo = bancoLogo;
-	}
 
 	private static final long serialVersionUID = 1L;
 }
