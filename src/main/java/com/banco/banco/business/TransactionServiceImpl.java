@@ -48,4 +48,9 @@ public class TransactionServiceImpl implements TransactionService {
 		transactionDao.deleteById(id);
 	}
 
+	@Override
+	@Transactional
+	public Transaction recepcion(Integer id) {
+		return transactionDao.findById(id).orElse(null);
+	}
 }

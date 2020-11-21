@@ -18,28 +18,41 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.banco.banco.business.ClienteService;
+import com.banco.banco.business.CuentaService;
 import com.banco.banco.business.TransactionService;
+import com.banco.banco.persistence.entity.Cliente;
+import com.banco.banco.persistence.entity.Cuenta;
 import com.banco.banco.persistence.entity.Transaction;
+import com.banco.banco.persistence.repository.CuentaDao;
 
 @CrossOrigin(origins = { "*" })
 @RestController
 @RequestMapping("api")
 public class TransactionController {
 
-	//String url = "http://nodocursoiot.ml:7777/com.banco-1/api/login/";	
+	// String url = "http://nodocursoiot.ml:7777/com.banco-1/api/login/";
 	String url = "http://nodocursoiot.ml:7777/angular/login/";
 	LocalDate date = LocalDate.now();
 
 	@Autowired
 	TransactionService transactionService;
+	// ---------------------------------------------------------------------------
+	@Autowired
+	CuentaService cuentaservice;
+	// -----------------------------------------------------------------------------
+
+	@Autowired
+	ClienteService clienteService;
 
 	// Create
 	@PostMapping("/transaction")
 	public ResponseEntity<Transaction> create(@RequestBody Transaction transaction) {
 		Transaction transaction2 = new Transaction();
+
 		try {
 
-			transaction.setEstado("Creado");
+			transaction.setEstado("CREADO");
 			transaction.setFecha(date);
 
 			System.out.println("Fechas: " + date);
@@ -109,6 +122,72 @@ public class TransactionController {
 
 		} else {
 			return ResponseEntity.notFound().build();
+		}
+
+	}
+
+	@PutMapping("/transaction/validacion")
+	public ResponseEntity<Transaction> receppago(@RequestBody Transaction trans) {
+		update(trans);
+		Transaction transaction = transactionService.findById(trans.getTransactionIdentificacion());
+		Cuenta cuenta = cuentaservice.findById(transaction.getIdCuenta());
+
+		if (transaction != null && cuenta.getValor() >= transaction.getMonto()) {
+			// return ResponseEntity.ok(transaction);
+
+			cuenta.setValor(cuenta.getValor() - transaction.getMonto());
+			cuentaservice.update(cuenta);
+			transaction.setEstado("Aprobado");
+			update(transaction);
+			return ResponseEntity.status(HttpStatus.OK).body(transaction);
+
+		} else {
+			// return ResponseEntity.notFound().build();
+			transaction.setEstado("Denegada");
+			update(transaction);
+			return ResponseEntity.status(HttpStatus.OK).body(transaction);
+		}
+
+	}
+
+	@PutMapping("/transaction/abono")
+	public ResponseEntity<Transaction> abonoCuenta(@RequestBody Transaction transaction) {
+		Transaction transaction2 = null;
+
+		if (transaction.getTipoTransaccion() == 2) {
+			transaction2 = transaction;
+
+			// Se trae la cuenta de acuerdo al id de la cuenta recaudadora
+			Cuenta cuenta = cuentaservice.findById(transaction2.getCuentaRecaudador());
+
+			// Valido que la cuenta exista
+			if (cuenta != null) {
+				Cliente cliente = clienteService.findById(cuenta.getClienteId());
+				// Valido que el cliente exista
+
+				if (cliente != null) {
+					// Hay un cliente y una cuenta
+					cuenta.setValor(cuenta.getValor() + transaction2.getMonto());
+					transaction2.setFecha(date);
+					transaction2.setEstado("APROBADO");
+					transaction2.setIdCuenta(cuenta.getCodCuenta());
+					cuentaservice.update(cuenta);
+					transactionService.save(transaction2);
+
+					return ResponseEntity.status(HttpStatus.OK).body(transaction2);
+				} else {
+					transaction2.setEstado("DENEGADO");
+					return ResponseEntity.status(HttpStatus.NOT_FOUND).body(transaction2);
+				}
+
+			} else {
+				transaction2.setEstado("DENEGADO");
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(transaction2);
+
+			}
+		} else {
+			transaction.setEstado("DENEGADO");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(transaction);
 		}
 
 	}

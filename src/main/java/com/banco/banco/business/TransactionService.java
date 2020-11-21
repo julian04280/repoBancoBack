@@ -15,5 +15,7 @@ public interface TransactionService {
 	public Transaction update(Transaction transaction);
 	
 	public void delete(Integer id);
+	
+	public Transaction recepcion(Integer id);
 
 }
