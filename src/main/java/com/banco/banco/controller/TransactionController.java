@@ -2,7 +2,7 @@ package com.banco.banco.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-import static com.banco.banco.config.Paramtros.*;
+import static com.banco.banco.config.Parametros.*;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

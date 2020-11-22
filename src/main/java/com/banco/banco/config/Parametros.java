@@ -1,6 +1,6 @@
 package com.banco.banco.config;
 
-public class Paramtros {
+public class Parametros {
 	
 	public static final String TR_INCIADO  = "INICIADO";
 	public static final String TR_CREADO   = "CREADO";
