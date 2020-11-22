@@ -2,6 +2,7 @@ package com.banco.banco.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import static com.banco.banco.config.Paramtros.*;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ public class TransactionController {
 
 		try {
 
-			transaction.setEstado("CREADO");
+			transaction.setEstado(TR_CREADO );
 			transaction.setFecha(date);
 
 			System.out.println("Fechas: " + date);
@@ -137,13 +138,13 @@ public class TransactionController {
 
 			cuenta.setValor(cuenta.getValor() - transaction.getMonto());
 			cuentaservice.update(cuenta);
-			transaction.setEstado("Aprobado");
+			transaction.setEstado(TR_APROBADO);
 			update(transaction);
 			return ResponseEntity.status(HttpStatus.OK).body(transaction);
 
 		} else {
 			// return ResponseEntity.notFound().build();
-			transaction.setEstado("Denegada");
+			transaction.setEstado(TR_DENEGADO);
 			update(transaction);
 			return ResponseEntity.status(HttpStatus.OK).body(transaction);
 		}
@@ -169,24 +170,24 @@ public class TransactionController {
 					// Hay un cliente y una cuenta
 					cuenta.setValor(cuenta.getValor() + transaction2.getMonto());
 					transaction2.setFecha(date);
-					transaction2.setEstado("APROBADO");
+					transaction2.setEstado(TR_APROBADO);
 					transaction2.setIdCuenta(cuenta.getCodCuenta());
 					cuentaservice.update(cuenta);
 					transactionService.save(transaction2);
 
 					return ResponseEntity.status(HttpStatus.OK).body(transaction2);
 				} else {
-					transaction2.setEstado("DENEGADO");
+					transaction2.setEstado(TR_DENEGADO);
 					return ResponseEntity.status(HttpStatus.NOT_FOUND).body(transaction2);
 				}
 
 			} else {
-				transaction2.setEstado("DENEGADO");
+				transaction2.setEstado(TR_DENEGADO);
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(transaction2);
 
 			}
 		} else {
-			transaction.setEstado("DENEGADO");
+			transaction.setEstado(TR_DENEGADO);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(transaction);
 		}
 
